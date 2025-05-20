@@ -1,0 +1,91 @@
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.main {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 40px;
+}
+
+.text {
+  font-size: 2vw;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.maincomp {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 70vh;
+  padding: 20px;
+}
+
+.boxes {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.boxes a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.box1,
+.box2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: text-shadow 0.3s ease, box-shadow 0.3s ease;
+  width: 80%;
+  max-width: 300px;
+  margin: 10px;
+  font-weight: 900;
+  font-size: 1.5em;
+}
+
+.box1:hover,
+.box2:hover {
+  color: #fff;
+  text-shadow: 0px 0px 40px #fff;
+}
+
+.box1 img,
+.box2 img {
+  margin: auto;
+  width: 80%;
+  height: auto;
+  max-width: 250px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .text {
+    padding: 4vw;
+    font-size: 4vw;
+    margin: 0;
+  }
+
+  .box1,
+  .box2 {
+    width: 80%;
+  }
+
+  .maincomp {
+    height: auto;
+  }
+}

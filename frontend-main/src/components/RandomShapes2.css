@@ -1,0 +1,37 @@
+.circle4 {
+  background-color: #fff;
+  bottom: -10%;
+  left: -1%;
+  transform: translate(-50%, 50%);
+}
+
+.circle5 {
+  background-color: #dcdcdc;
+  bottom: 5%;
+  left: -8%;
+  transform: translate(-50%, 50%);
+}
+
+.circle6 {
+  background-color: #a7a7a7;
+  bottom: -8%;
+  left: -6%;
+  transform: translate(-50%, 50%);
+}
+
+@media (max-width: 768px) {
+  .circle4 {
+    bottom: -10px;
+    left: -10px;
+  }
+
+  .circle5 {
+    bottom: -25px;
+    left: -25px;
+  }
+
+  .circle6 {
+    bottom: -50px;
+    left: -50px;
+  }
+}

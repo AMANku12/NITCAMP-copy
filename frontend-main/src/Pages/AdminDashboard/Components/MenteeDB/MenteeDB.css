@@ -1,0 +1,52 @@
+.big-box {
+  border-radius: 20px;
+  background-color: white;
+  width: 800px;
+  height: 400px;
+  padding: 2%;
+  position: fixed;
+  left: 280px;
+  top: 250px;
+}
+
+.title {
+  position: fixed;
+  left: 280px;
+  top: 180px;
+  width: 850px;
+  padding-bottom: 1%;
+  font-size: 32px;
+  font-weight: 700;
+  border-bottom: 2px solid #fff;
+}
+
+table {
+  background: #fff;
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  margin: 1em;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+th {
+  border-bottom: 1px solid #364043;
+  color: #000;
+  font-size: 0.85em;
+  font-weight: 600;
+  padding: 0.5em 1em;
+  text-align: left;
+}
+td {
+  color: #000;
+  font-weight: 400;
+  padding: 0.65em 1em;
+}
+
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #ccc;
+  color: #000;
+}

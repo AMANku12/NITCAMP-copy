@@ -1,0 +1,50 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.App {
+  height: 400px;
+}
+
+.sidebar {
+  top: 25vh;
+  height: 75vh;
+  width: 250px;
+  background-color: #000;
+  color: white;
+  position: fixed;
+  left: 0;
+
+  padding: 0 30px 0 0;
+  box-sizing: border-box;
+  border-right: 2px solid #ccc;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  text-align: right;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 0 0 20px 0;
+}
+
+.sidebar ul li button {
+  color: white;
+  background: none;
+  border: none;
+  font-size: 20px;
+  transition: font-size 0.1s ease-in-out;
+}
+
+.sidebar ul li button:hover,
+.sidebar ul li button.active {
+  font-size: 22px;
+  border: 2px solid #fff;
+  color: black;
+  background-color: #fff;
+  padding: 2px 16px 2px 16px;
+  border-radius: 15px;
+}

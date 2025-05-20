@@ -1,0 +1,45 @@
+.comp {
+  display: flex;
+  flex-direction: row;
+  margin: 20px 0 0 20px;
+  width: 36%;
+}
+
+img {
+  height: 80px;
+  width: 80px;
+  margin-right: 20px;
+}
+
+.h1 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 0 0;
+}
+
+.h2 {
+  font-size: 20px;
+  font-weight: 900;
+  margin: 2% 0 0 0;
+}
+
+.h3 {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 2% 0 0 0;
+}
+
+.h4 {
+  font-size: 8px;
+  font-weight: 400;
+  margin: 0 0 0 0;
+}
+
+@media (max-width: 768px) {
+  .h1,
+  .h2,
+  .h3,
+  .h4 {
+    display: none;
+  }
+}

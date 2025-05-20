@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "phone": "+1234567890",
+    "email": "john.doe@example.com",
+    "department": "Computer Science",
+    "mentoringType": "CS101",
+    "yearOfEnrollment": 2,
+    "broad": "Engineering",
+    "narrow": "Software Development"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "phone": "+0987654321",
+    "email": "jane.smith@example.com",
+    "department": "Electrical Engineering",
+    "mentoringType": "EE202",
+    "yearOfEnrollment": 3,
+    "broad": "Engineering",
+    "narrow": "Circuit Design"
+  },
+  {
+    "id": 3,
+    "name": "Alice Johnson",
+    "phone": "+1122334455",
+    "email": "alice.johnson@example.com",
+    "department": "Mechanical Engineering",
+    "mentoringType": "ME303",
+    "yearOfEnrollment": 1,
+    "broad": "Engineering",
+    "narrow": "Thermodynamics"
+  },
+  {
+    "id": 4,
+    "name": "Bob Brown",
+    "phone": "+9988776655",
+    "email": "bob.brown@example.com",
+    "department": "Mathematics",
+    "mentoringType": "MA404",
+    "yearOfEnrollment": 4,
+    "broad": "Science",
+    "narrow": "Applied Mathematics"
+  },
+  {
+    "id": 5,
+    "name": "Carol White",
+    "phone": "+4455667788",
+    "email": "carol.white@example.com",
+    "department": "Physics",
+    "mentoringType": "PH505",
+    "yearOfEnrollment": 2,
+    "broad": "Science",
+    "narrow": "Quantum Mechanics"
+  },
+  {
+    "id": 6,
+    "name": "David Black",
+    "phone": "+5566778899",
+    "email": "david.black@example.com",
+    "department": "Chemistry",
+    "mentoringType": "CH606",
+    "yearOfEnrollment": 3,
+    "broad": "Science",
+    "narrow": "Organic Chemistry"
+  },
+  {
+    "id": 7,
+    "name": "Emily Clark",
+    "phone": "+6677889900",
+    "email": "emily.clark@example.com",
+    "department": "Biology",
+    "mentoringType": "BI707",
+    "yearOfEnrollment": 1,
+    "broad": "Science",
+    "narrow": "Genetics"
+  },
+  {
+    "id": 8,
+    "name": "Frank Wilson",
+    "phone": "+7788990011",
+    "email": "frank.wilson@example.com",
+    "department": "Civil Engineering",
+    "mentoringType": "CE808",
+    "yearOfEnrollment": 2,
+    "broad": "Engineering",
+    "narrow": "Structural Analysis"
+  },
+  {
+    "id": 9,
+    "name": "Grace Lee",
+    "phone": "+8899001122",
+    "email": "grace.lee@example.com",
+    "department": "Business Administration",
+    "mentoringType": "BA909",
+    "yearOfEnrollment": 4,
+    "broad": "Management",
+    "narrow": "Finance"
+  },
+  {
+    "id": 10,
+    "name": "Henry Martin",
+    "phone": "+9900112233",
+    "email": "henry.martin@example.com",
+    "department": "Architecture",
+    "mentoringType": "AR1010",
+    "yearOfEnrollment": 3,
+    "broad": "Arts",
+    "narrow": "Urban Planning"
+  }
+]

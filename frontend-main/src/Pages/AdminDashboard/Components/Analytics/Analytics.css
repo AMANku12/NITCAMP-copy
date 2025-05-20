@@ -1,0 +1,47 @@
+.big-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px; /* Adjust the gap as needed */
+  border-radius: 20px;
+  background-color: white;
+  width: 800px;
+  height: 400px;
+  padding: 2%;
+  position: fixed;
+  left: 280px;
+  top: 250px;
+}
+
+.each-box {
+  background: #ccc;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  text-align: center;
+  font-family: "Arial, sans-serif";
+}
+
+.each-box div:first-child {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+}
+
+.each-box div:last-child {
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+}
+
+.title {
+  position: fixed;
+  left: 280px;
+  top: 180px;
+  width: 850px;
+  padding-bottom: 1%;
+  font-size: 32px;
+  border-bottom: 2px solid #fff;
+  font-weight: 700;
+}

@@ -8,7 +8,9 @@ import { sequelize, testConnection } from "./config/database";
 import { menteeRouter } from "./routes/mentee";
 import { mentorRouter } from "./routes/mentor";
 import { adminRouter } from "./routes/admin";
+import dotenv from "dotenv"
 
+dotenv.config();
 const app = express();
 const port = process.env.PORT;
 

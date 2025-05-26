@@ -6,6 +6,8 @@ import AuthRouter from "./routes/auth.route";
 // import mentorRouter from "./routes/mentor.route";
 // import adminRouter from "./routes/admin.route";
 import pool from "./db/db";
+dotenv.config();
+import logger from "./utility/logger";  
 
 const app = express();
 app.use(cors());
@@ -22,12 +24,12 @@ app.use("/api/login", AuthRouter);
 // app.use("/api/admin-reg", adminRouter);
 
 app.listen(3001, ()=>{
-    console.log("🆗 server is running on port",3001);
+    logger.info("🆗 server is running on port",3001);
     pool.query("SELECT NOW()", (err, res) => {
         if (err) {
-            console.error("❌ DB connection failed:", err.message);
+            logger.error("❌ DB connection failed: ", err.message);
         } else {
-            console.log("✅ DB connected at:", res.rows[0].now);
+            logger.info("✅ DB connected at: " + JSON.stringify(res.rows[0].now));
         }
     });
 });

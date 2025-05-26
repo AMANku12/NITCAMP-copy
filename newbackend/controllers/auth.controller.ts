@@ -4,6 +4,7 @@ import { OAuth2Client } from "google-auth-library";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import { validationResult } from "express-validator";
+import logger from "../utility/logger";
 
 dotenv.config();
 
@@ -34,7 +35,7 @@ const userController = async (req: Request, res: Response): Promise<void> => {
   if (!errors.isEmpty()) {
     const errorMessages = errors.array().map(error => error.msg);
     res.status(400).json({ errors: errorMessages });
-    console.log("Validation errors:", errorMessages);
+    logger.error("Validation errors: %o", errorMessages);
     return;
   }
 
@@ -47,8 +48,11 @@ const userController = async (req: Request, res: Response): Promise<void> => {
 
     if (!email || !name) {
       res.status(400).json({ message: "Invalid Google token" });
+      logger.error("Invalid Google token");
       return;
     }
+
+    logger.info("Google token verified: %o", { name: payload?.name, email: payload?.email });
 
     const existingUser = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
 
@@ -60,27 +64,27 @@ const userController = async (req: Request, res: Response): Promise<void> => {
         [name, email, role]
       );
 
-      console.log("🆕 New user created:", newUser.rows[0]);
+      logger.info("🆕 New user created: %o", newUser.rows[0]);
       res.status(200).json({ message: "SUCCESS-NEWUSER", user: newUser.rows[0] });
 
     } else {  // existing user
 
-      console.log("✅ Existing user:", existingUser.rows[0]);
+      logger.info("✅ Existing user: %o", existingUser.rows[0]);
 
       const roleData = await fetchRoleData(existingUser.rows[0].role, existingUser.rows[0].id);
 
       if(roleData){
-        console.log("Role data fetched:", roleData);
+        logger.info("Role data fetched: %o", roleData);
         res.status(200).json({ message: "SUCCESS-EXISTINGUSER", user: existingUser.rows[0], roleData });
 
       }else{
-        console.log("No role data found");
+        logger.warn("No role data found for %o", existingUser.rows[0].fullname);
         res.status(200).json({ message: "SUCCESS-EXISTINGUSER-NO_ROLE_DATA", user: existingUser.rows[0], roleData: null });
       }
 
     }
   } catch (error) {
-    console.error("❌ Error in Google login:", error);
+    logger.error("❌ Error in Google login: %o", error);
     res.status(500).json({ message: "Something went wrong with Google login" });
   }
 };
@@ -90,17 +94,20 @@ const adminController = async (req: Request, res: Response): Promise<void> => {
   if (!errors.isEmpty()) {
     const errorMessages = errors.array().map(error => error.msg);
     res.status(400).json({ errors: errorMessages });
-    console.log("Validation errors:", errorMessages);
+    logger.error("Validation errors: %o", errorMessages);
     return;
   }
 
   const { email, password} = req.body;
+
+  logger.info("Admin login attempt: %o", email);
 
   try {
     const existingUser = await pool.query("SELECT * FROM admin WHERE email = $1", [email]);
 
     if(existingUser.rows.length === 0){
       res.status(400).json({ message: "Admin not found" });
+      logger.warn("Admin not found: %o", email);
 
     }else{
       const user = existingUser.rows[0];
@@ -108,46 +115,52 @@ const adminController = async (req: Request, res: Response): Promise<void> => {
 
       if(!isPassValid){
         res.status(400).json({ message: "Invalid password" });
+        logger.warn("Invalid password entered by admin: %o", email);
 
       }else{
         user.password = undefined; 
-        console.log("✅ Admin login successful:", user);
+        logger.info("✅ Admin login successful: %o", user.name);
         res.status(200).json({ message: "SUCCESS-ADMINLOGIN", user });
       }
     }
 
   } catch (error) {
-    console.error("❌ Error in admin login:", error);
+    logger.error("❌ Error in admin login: %o", error);
     res.status(500).json({ message: "Something went wrong with admin login" });
     
   }
 }
 
 const adminRegisterController = async (req: Request, res: Response): Promise<void> => {
-  const {name, email, password, phone_number, adminKey} = req.body;
-
+  
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const errorMessages = errors.array().map(error => error.msg);
     res.status(400).json({ errors: errorMessages });
-    console.log("Validation errors:", errorMessages);
+    logger.error("Validation errors: %o", errorMessages);
     return;
   }
+  
+  const {name, email, password, phone_number, adminKey} = req.body;
+  logger.info("Admin registration attempt: %o", email);
 
   try {
     const existingAdmin = await pool.query("SELECT * FROM admin WHERE email = $1", [email]);
  
     if(existingAdmin.rows.length > 0){
       res.status(400).json({ message: "Admin already exists" });
+      logger.warn("Admin already exists: %o", email);
       return;
     }
 
     if(adminKey !== process.env.ADMIN_KEY){
       res.status(400).json({ message: "Invalid admin key" });
+      logger.warn("Invalid admin key provided by: %o", email);
       return;
     }
     if(!name || !phone_number){
       res.status(400).json({ message: "All fields are required" });
+      logger.warn("All fields are required for: %o", email);
       return;
     }
 
@@ -159,11 +172,11 @@ const adminRegisterController = async (req: Request, res: Response): Promise<voi
 
     newAdmin.rows[0].password = undefined; 
 
-    console.log("🆕 New admin created:", newAdmin.rows[0]);
+    logger.info("🆕 New admin created: %o", newAdmin.rows[0]);
     res.status(200).json({ message: "SUCCESS-NEWADMIN", admin: newAdmin.rows[0] });
 
   } catch (error) {
-    console.error("❌ Error in admin registration:", error);
+    logger.error("❌ Error in admin registration: %o", error);
     res.status(500).json({ message: "Something went wrong with admin registration" });
     
   }

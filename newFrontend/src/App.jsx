@@ -9,7 +9,8 @@ import Footer from "./components/footer";
 import Events from "./components/Events";
 import Profile from "./components/profile.jsx";
 import About from "./components/about.jsx";
-import Login from "./components/login.jsx";
+import Choice from "./components/Choice.jsx";
+import Login from "./components/Login.jsx";
 
 // Placeholder pages
 // const About = () => <div className="p-6">About Page (Coming soon)</div>;
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/events" element={<Events />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/choice" element={<Choice />}/>
         </Routes>
       </main>
       <Footer />

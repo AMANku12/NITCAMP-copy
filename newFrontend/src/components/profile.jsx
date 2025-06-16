@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Pencil } from "lucide-react";
 import defaultProfile from "../assets/profile.jpg"; // Replace with actual path
 
 const users = [
@@ -61,7 +60,7 @@ const ProfileCard = ({ user }) => {
             <span className="font-medium text-gray-700">{field.label}:</span>
             <div className="flex items-center space-x-2">
               <span className="text-gray-800">{field.value}</span>
-              <Pencil className="w-4 h-4 text-gray-500 cursor-pointer" />
+            
             </div>
           </div>
         ))}

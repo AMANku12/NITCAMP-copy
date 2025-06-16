@@ -9,7 +9,7 @@ const Login = () => {
         try {
             const idToken = googleRes.credential;
 
-            const res = await axios.post("http://localhost:3001/api/google", {googletoken: idToken});
+            const res = await axios.post("http://localhost:3001/api/auth/google", {googletoken: idToken});
 
             alert("Login successfull");
 

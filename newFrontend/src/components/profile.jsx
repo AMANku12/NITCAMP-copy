@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import defaultProfile from "../assets/profile.jpg"; // Replace with actual path
+import defaultProfile from "../assets/profile.jpg";
 
 const users = [
   {
@@ -19,21 +19,32 @@ const users = [
     narrowExpertise: "AI, ML, Backend development",
     role: "Mentee",
   },
-  // more user objects here
 ];
 
+const nonEditableFields = ["email", "degree", "graduationYear", "department"];
+
 const ProfileCard = ({ user }) => {
+  const [formData, setFormData] = useState({ ...user });
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleChange = (field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
   const fields = [
-    { label: "Email", value: user.email },
-    { label: "Degree", value: user.degree },
-    { label: "Year Graduated", value: user.graduationYear },
-    { label: "Phone No.", value: user.phone },
-    { label: "Department", value: user.department },
-    { label: "Mentee Capacity", value: user.menteeCapacity },
-    { label: "Mentoring Type", value: user.mentoringType },
-    { label: "Availability", value: user.availability ? "Yes" : "No" },
-    { label: "Broad Area of Expertise", value: user.broadExpertise },
-    { label: "Narrow Area of Expertise", value: user.narrowExpertise },
+    { label: "Email", key: "email" },
+    { label: "Degree", key: "degree" },
+    { label: "Year Graduated", key: "graduationYear" },
+    { label: "Phone No.", key: "phone" },
+    { label: "Department", key: "department" },
+    { label: "Mentee Capacity", key: "menteeCapacity" },
+    { label: "Mentoring Type", key: "mentoringType" },
+    { label: "Availability", key: "availability" },
+    { label: "Broad Area of Expertise", key: "broadExpertise" },
+    { label: "Narrow Area of Expertise", key: "narrowExpertise" },
   ];
 
   return (
@@ -44,12 +55,12 @@ const ProfileCard = ({ user }) => {
       transition={{ duration: 0.6 }}
     >
       <img
-        src={user.image}
+        src={formData.image}
         alt="Profile"
         className="w-28 h-28 rounded-full shadow-md object-cover border-4 border-blue-300"
       />
-      <h2 className="text-2xl font-bold mt-3 text-blue-700">{user.name}</h2>
-      <p className="text-gray-600 italic">{user.role}</p>
+      <h2 className="text-2xl font-bold mt-3 text-blue-700">{formData.name}</h2>
+      <p className="text-gray-600 italic">{formData.role}</p>
 
       <div className="mt-6 w-full text-left space-y-3">
         {fields.map((field, idx) => (
@@ -58,17 +69,46 @@ const ProfileCard = ({ user }) => {
             className="flex items-center justify-between bg-gray-100 rounded-lg px-4 py-2"
           >
             <span className="font-medium text-gray-700">{field.label}:</span>
-            <div className="flex items-center space-x-2">
-              <span className="text-gray-800">{field.value}</span>
-            
-            </div>
+            {nonEditableFields.includes(field.key) || !isEditing ? (
+              <span className="text-gray-800">{formData[field.key]?.toString()}</span>
+            ) : field.key === "availability" ? (
+              <select
+                value={formData[field.key] ? "Yes" : "No"}
+                onChange={(e) =>
+                  handleChange(field.key, e.target.value === "Yes")
+                }
+                className="bg-white border rounded px-2 py-1"
+              >
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            ) : (
+              <input
+                type="text"
+                value={formData[field.key]}
+                onChange={(e) => handleChange(field.key, e.target.value)}
+                className="bg-white border rounded px-2 py-1 w-48"
+              />
+            )}
           </div>
         ))}
       </div>
 
-      <button className="mt-6 bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-full shadow">
-        Delete My Account
-      </button>
+      <div className="flex gap-4 mt-6">
+        <button
+          className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-full shadow"
+        >
+          Delete My Account
+        </button>
+        <button
+          className={`${
+            isEditing ? "bg-green-500 hover:bg-green-600" : "bg-blue-500 hover:bg-blue-600"
+          } text-white px-6 py-2 rounded-full shadow`}
+          onClick={() => setIsEditing((prev) => !prev)}
+        >
+          {isEditing ? "Save" : "Edit"}
+        </button>
+      </div>
     </motion.div>
   );
 };

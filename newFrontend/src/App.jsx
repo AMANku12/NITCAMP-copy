@@ -10,7 +10,7 @@ import Events from "./components/Events";
 import Profile from "./components/profile.jsx";
 import About from "./components/about.jsx";
 import Choice from "./components/Choice.jsx";
-import Login from "./components/Login.jsx";
+import Login from "./components/login.jsx";
 
 // Placeholder pages
 // const About = () => <div className="p-6">About Page (Coming soon)</div>;
